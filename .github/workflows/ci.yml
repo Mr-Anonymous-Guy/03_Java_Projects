@@ -12,6 +12,7 @@ jobs:
     name: Build Level 1 Projects (javac)
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         project: [Grade_Calculator, Simple_Banking_System]
     steps:
@@ -34,6 +35,7 @@ jobs:
     name: Build Maven Projects
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         project:
           - Employee_Management_System
