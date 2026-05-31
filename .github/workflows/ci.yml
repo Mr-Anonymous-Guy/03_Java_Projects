@@ -48,6 +48,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+          cache: 'maven'
 
       - name: Build and Test ${{ matrix.project }}
         run: |
