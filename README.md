@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="./Image3.jpeg" alt="Java Projects Banner" width="100%">
+  <img src="./Image3.png" alt="Java Projects Banner" width="100%">
 </p>
 
 <p align="center">
