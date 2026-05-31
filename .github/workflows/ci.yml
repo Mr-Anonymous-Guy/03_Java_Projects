@@ -1,0 +1,55 @@
+name: Java CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Level 1 Projects — Compile with javac
+  build-level1:
+    name: Build Level 1 Projects (javac)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: [Grade_Calculator, Simple_Banking_System]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Compile ${{ matrix.project }}
+        run: |
+          cd ${{ matrix.project }}
+          mkdir -p bin
+          javac -d bin -sourcepath src $(find src -name "*.java")
+
+  # Level 2 & 3 Projects — Build with Maven
+  build-maven:
+    name: Build Maven Projects
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project:
+          - Employee_Management_System
+          - Library_Management_System
+          - Mini_E-Commerce_System
+          - AI_Chat_Assistant
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build and Test ${{ matrix.project }}
+        run: |
+          cd ${{ matrix.project }}
+          mvn clean compile test --batch-mode --no-transfer-progress

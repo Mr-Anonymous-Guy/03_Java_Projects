@@ -63,9 +63,9 @@ public class ReportGenerator {
             String timestamp = dtf.format(LocalDateTime.now());
             String fileName = "reports/Report_" + student.getRollNumber() + "_" + timestamp + ".txt";
             
-            FileWriter writer = new FileWriter(fileName);
-            writer.write(report);
-            writer.close();
+            try (FileWriter writer = new FileWriter(fileName)) {
+                writer.write(report);
+            }
             System.out.println("Report successfully saved to " + fileName);
         } catch (IOException e) {
             System.err.println("Error saving report: " + e.getMessage());
